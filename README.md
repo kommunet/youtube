@@ -6,7 +6,7 @@ YouTube, as it appears on Kommunet.
 - All domains are free, but can be revoked IF your website does not adhere to the standards of IE 6, Opera 8.5, Firefox 1.5.
 
 # Other projects
-Myspace (https://github.com/kommunet/myspace)
+MySpace (https://github.com/kommunet/myspace)
 
 # Contributors
 - Gabriel H. (genosmrpg7899#2369)
