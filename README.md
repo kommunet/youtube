@@ -9,5 +9,5 @@ On Kommunet, all domains are free, but can be revoked IF your website does not a
 Myspace (https://github.com/kommunet/myspace)
 
 # Contributors
-Gabriel H. (genosmrpg7899#2369)
+Gabriel H. (genosmrpg7899#2369)\n
 Connor (kinery#5323)
