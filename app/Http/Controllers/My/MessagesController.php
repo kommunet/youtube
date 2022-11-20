@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Message;
 use App\Models\User;
 
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 
 class MessagesController extends Controller
@@ -35,8 +37,12 @@ class MessagesController extends Controller
 		$to = $message->sentTo;
 		$tab = ($from->id == $request->user()->id) ? 'sent' : 'inbox';
 		
-		$message->is_read   = true;
-		$message->time_read = Carbon::now();
+		if($tab == 'inbox')
+		{
+			$message->is_read   = true;
+			$message->time_read = Carbon::now();
+		}
+		
 		$message->save();
 		
 		return view("inbox.view_message", compact("message", "from", "to", "tab"));
