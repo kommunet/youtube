@@ -1,4 +1,5 @@
-<x-layout>
+<x-layout tab="home">
+	<x-slot name="actions"><x-actions type="home"/></x-slot>
 	@if(session()->has("success"))
 		<table width="100%" align="center" cellpadding="6" cellspacing="3" border="0" bgcolor="green" style="margin-bottom: 10px;">
 			<tbody>
