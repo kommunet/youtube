@@ -1,5 +1,5 @@
 # Kommunet YouTube
-YouTube, as it appears on Kommunet.
+YouTube, as it appears (or will appear) on Kommunet.
 
 # What is Kommunet?
 - A private community of people contributing to an alternative internet.
