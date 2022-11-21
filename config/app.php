@@ -212,6 +212,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
 		'Countries' => Monarobase\CountryList\CountryListFacade::class,
+		'YouTube' => App\Facades\YouTube::class,
 	])->toArray(),
 
 ];
