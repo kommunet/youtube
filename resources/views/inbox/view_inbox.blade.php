@@ -1,5 +1,5 @@
 <x-layout tab="home">
-	<x-slot name="actions"><x-actions type="home"/></x-slot>
+	<x-slot name="actions"><x-actions.home tab="messages"/></x-slot>
 	<x-inbox :tab="$tab">
 		<table cellpadding="4" border="0" align="center" width="100%" bgcolor="#E5ECF9" style="border-collapse: collapse;border: 4px #E5ECF9 solid;">
 			<tbody>
@@ -10,18 +10,18 @@
 					<td width="120">Sent</td>
 				</tr>
 				@if($messages->count())
-					@foreach($messages as $message)
-						<tr bgcolor="{{ ($message->is_read) ? '#E5E5E5' : '#FFFFFF' }}">
+					@foreach($messages as $item)
+						<tr bgcolor="{{ ($item->is_read) ? '#E5E5E5' : '#FFFFFF' }}">
 							<td align="center">
 								<input type="checkbox">
 							</td>
 							<td>
-								<a href="{{ route('profile', ['user' => $message->sentBy->username]) }}">{{ $message->sentBy->username }}</a>
+								<a href="{{ route('profile', ['user' => $item->sentBy->username]) }}">{{ $item->sentBy->username }}</a>
 							</td>
 							<td>
-								<a href="{{ route('inbox.view', ['mid' => $message->id]) }}">{{ $message->subject }}</a>
+								<a href="{{ route('inbox.view', ['mid' => $item->message_id]) }}">{{ $item->subject }}</a>
 							</td>
-							<td>{{ $message->created_at->format("F j, Y") }}</td>
+							<td>{{ $item->created_at->ytFormat("F j, Y") }}</td>
 						</tr>
 					@endforeach
 				@else

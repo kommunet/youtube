@@ -1,3 +1,6 @@
 *
 !public/
 !.gitignore
+!finalized_videos/
+!processing_videos/
+!thumbnails/

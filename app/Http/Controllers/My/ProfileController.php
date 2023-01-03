@@ -24,7 +24,7 @@ class ProfileController extends Controller
 			
 			$request->validate([
 				"name" => ["nullable", "max:30"],
-				"b_date" => ["string", "date_format:n-j-Y", "before:".Carbon::now()->format("n-j-Y")], 
+				"b_date" => ["string", "date_format:n-j-Y", "before:".Carbon::now()->addDays(1)->format("n-j-Y")], 
 				"show_birthday" => ["in:0,1"],
 				"gender" => ["nullable", "in:Male,Female"],
 				"relationship_status" => ["nullable", "in:Single,Taken,Married"],

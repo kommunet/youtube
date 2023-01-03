@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => 'http://www.' . env('YOUTUBE_URL'),
 
     'asset_url' => env('ASSET_URL'),
 
@@ -195,6 +195,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 		Monarobase\CountryList\CountryListServiceProvider::class,
+		ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
 
     ],
 
@@ -213,6 +214,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
 		'Countries' => Monarobase\CountryList\CountryListFacade::class,
 		'YouTube' => App\Facades\YouTube::class,
+		'FFMpeg' => ProtoneMedia\LaravelFFMpeg\Support\FFMpeg::class
 	])->toArray(),
 
 ];

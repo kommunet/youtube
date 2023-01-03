@@ -8,16 +8,20 @@ class Layout extends Component
 {
 	public $tab;
 	public $actions;
+	public $title;
 	
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($tab = null)
+    public function __construct($tab = null, $title = "Broadcast Yourself.")
     {
         $this->tab = $tab;
+		
 		$this->actions = "";
+		
+		$this->title = $title;
     }
 
     /**

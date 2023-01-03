@@ -1,5 +1,5 @@
 <x-layout tab="home">
-	<x-slot name="actions"><x-actions type="home"/></x-slot>
+	<x-slot name="actions"><x-actions.home tab="messages"/></x-slot>
 	<x-inbox subtitle="Compose a Message">
 		<table cellpadding="0" cellspacing="8" border="0" bgcolor="#E5ECF9" align="center" width="100%">
 			<tbody>

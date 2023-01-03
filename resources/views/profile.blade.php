@@ -1,18 +1,5 @@
 <x-layout>
 	<div style="padding: 0px 5px 0px 5px;">
-		@if(session()->has("success"))
-			<table width="100%" align="center" cellpadding="6" cellspacing="3" border="0" bgcolor="green" style="margin-bottom: 10px;">
-				<tbody>
-					<tr>
-						<td align="center" bgcolor="#FFFFFF">
-							<span style="font-weight: bold;color: green;">
-							{{ session()->get("success") }}
-							</span>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		@endif
 		<div style="padding-bottom: 15px;">
 			<table align="center" cellpadding="0" cellspacing="0" border="0">
 				<tbody>
@@ -22,7 +9,7 @@
 						</td>
 						<td style="padding: 0px 5px 0px 5px;">|</td>
 						<td>
-							<a href="#">Public Videos</a> (0)
+							<a href="{{ route('profile.videos', ['user' => $user->username]) }}">Public Videos</a> ({{ $user->num_public_videos }})
 						</td>
 						<td style="padding: 0px 5px 0px 5px;">|</td>
 						<td>
@@ -50,7 +37,12 @@
 					<td width="595" style="padding-right: 15px;">
 						<div style="border: 1px solid #CCCCCC; padding: 15px 15px 30px 15px;">
 							<div style="font-size: 18px; font-weight: bold; color: #CC6633; margin-bottom: 2px;">Hello. I'm {{ $user->username }}.</div>
-							<div style="font-size: 14px; font-weight: bold; color: #999999;">I have watched 0 videos!</div>
+							<div style="font-size: 11px; font-weight: bold; padding-left: 15px; color: #999999;">
+							I have <a href="#">{{ $user->num_subscribers }} subscribers</a>!<br>
+							I have watched {{ $user->num_videos_watched }} videos!&nbsp; 
+							<br>
+							My profile has been viewed {{ $user->num_profile_views }} times!<br>
+							</div>
 							<!-- Personal Information: -->
 							<div class="profileLabel">Last Login:</div> {{ $user->last_login->diffForHumans() }} 
 							<div class="profileLabel">Signed up:</div> {{ $user->created_at->diffForHumans() }}
@@ -93,17 +85,18 @@
 									</td>
 									<td align="center" style="padding: 5px;">
 										<div style="padding: 5px; text-align: center;">
-											<!--
-											<div style="font-size: 14px; font-weight: bold; color: #003366;">Latest Video Added</div>
-											<div style="padding-bottom: 10px;">
-												<a href="watch.php?v=D76kXs1_P4I">
-													<img src="get_still.php?video_id=D76kXs1_P4I" class="moduleFeaturedThumb" width="120" height="90">
-												</a>
-												<div class="moduleFeaturedTitle">
-													<a href="watch.php?v=D76kXs1_P4I">Group Photo at West Beach</a>
+											@if($video)
+												<div style="font-size: 14px; font-weight: bold; color: #003366;">Latest Video Added</div>
+												<div style="padding-bottom: 10px;">
+													<a href="{{ route('watch', ['v' => $video->video_id]) }}">
+														<img src="{{ route('get_still', ['video_id' => $video->video_id]) }}" class="moduleFeaturedThumb" width="120" height="90">
+													</a>
+													<div class="moduleFeaturedTitle">
+														<a href="{{ route('watch', ['v' => $video->video_id]) }}">{{ $video->title }}</a>
+													</div>
+													<div class="moduleFeaturedDetails">Added: {{ $video->created_at->diffForHumans() }}</div>
 												</div>
-												<div class="moduleFeaturedDetails">Added: 2 months ago</div>
-											</div>-->
+											@endif
 											@if(Auth::check())
 											<form method="post" action="#">
 												@csrf
@@ -118,9 +111,9 @@
 												@csrf
 												<input type="submit" value="Send Message">
 											</form>
-											<form method="post" action="#">
+											<form method="post" action="{{ ($is_subscribed) ? route('my.subscriptions', ['remove_user' => $user->username]) : route('my.subscriptions', ['add_user' => $user->username]) }}">
 												@csrf
-												<input type="submit" value="Subscribe to {{ $user->username }}'s Videos">
+												<input type="submit" value="{{ ($is_subscribed) ? 'Unsubscribe from' : 'Subscribe to' }} {{ $user->username }}'s Videos">
 											</form>
 										</div>
 									</td>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\My;
 
+use App\Helpers\YouTube;
 use App\Http\Controllers\Controller;
 use App\Models\Message;
 use App\Models\User;
@@ -28,7 +29,8 @@ class MessagesController extends Controller
 	
     public function viewMessage(Request $request)
 	{
-		$message = Message::findOrFail($request->mid);
+		$message = Message::where("message_id", $request->mid)
+						  ->firstOrFail();
 		
 		if(!$message->canView($request->user()))
 			return redirect()->route("home");
@@ -61,10 +63,11 @@ class MessagesController extends Controller
 			]);
 			
 			Message::create([
-				"sent_by" => $from->id,
-				"sent_to" => $to->id,
-				"subject" => $request->subject,
-				"message" => $request->message
+				"message_id" => YouTube::generateId(),
+				"sent_by"    => $from->id,
+				"sent_to"    => $to->id,
+				"subject"    => $request->subject,
+				"message"    => $request->message
 			]);
 			
 			return redirect()->route("profile", ["user" => $to->username])

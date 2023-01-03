@@ -28,7 +28,12 @@ class AuthController extends Controller
 			{
 				$user = Auth::user();
 				
-				$user->last_login = Carbon::now()->format("Y-m-d H:i:s");
+				$now = Carbon::now()->format("Y-m-d H:i:s");
+				$user->last_login = $now;
+				$user->last_online = $now;
+				
+				$user->last_login_ip = $request->ip();
+				
 				$user->save();
 				
 				return redirect()->route("home");
@@ -47,15 +52,17 @@ class AuthController extends Controller
 		{
 			$request->validate([
 				"email" => ["required", "email", "unique:users"],
-				"username" => ["required", "unique:users", "min:1", "max:20"],
+				"username" => ["required", "unique:users", "min:3", "max:20", "alpha_num"],
 				"password" => ["required", "min:1", "max:20", "confirmed"],
 			]);
 			
 			$user = User::create([
-				"username"   => $request->username,
-				"password"   => Hash::make($request->password),
-				"email"      => $request->email,
-				"last_login" => Carbon::now()->format("Y-m-d H:i:s"),
+				"username"      => $request->username,
+				"password"      => Hash::make($request->password),
+				"email"         => $request->email,
+				"last_login"    => Carbon::now()->format("Y-m-d H:i:s"),
+				"register_ip"   => $request->ip(),
+				"last_login_ip" => $request->ip(),
 			]);
 			
 			Auth::login($user);

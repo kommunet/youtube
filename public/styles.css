@@ -3,6 +3,10 @@ body {
 	font-size: 12px;
 	background-color: #FFFFFF;
 	color: #222222;
+/*
+	margin: 0px;
+	padding: 0px;
+*/
 }
 
 a:link, a:visited, a:active {
@@ -89,7 +93,6 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 
 .error {
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
 	font-weight: 700;
 	color: #FF0000;
 }
@@ -111,7 +114,7 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 /* Modules */
 
 .moduleEntrySelected {
-	background-image: url(img/table_results_selected_bg.gif);
+	background-image: url(/img/table_results_selected_bg.gif);
 	background-repeat: repeat-x;
 	background-color: #FFFFCC;
 	background-position: left top;
@@ -121,7 +124,7 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 
 .moduleEntry {
 	background-color: #DDD;
-	background-image: url(img/table_results_bg.gif);
+	background-image: url(/img/table_results_bg.gif);
 	background-position: left top;
 	background-repeat: repeat-x;
 	border-bottom: 1px dashed #999999;
@@ -180,7 +183,7 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 
 .moduleFeatured {
 	background-color: #DDD;
-	background-image: url(img/table_results_bg.gif);
+	background-image: url(/img/table_results_bg.gif);
 	background-position: left top;
 	background-repeat: repeat-x;
 	border-bottom: 1px dashed #999999;
@@ -217,9 +220,9 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 }
 
 .moduleFrameEntrySelected {
-	width: 270;
+	width: 270px;
 	background-color: #FFFFCC;
-	background-image: url(img/table_results_selected_bg.gif);
+	background-image: url(/img/table_results_selected_bg.gif);
 	background-repeat: repeat-x;
 	background-position: left top;
 	border-bottom: 1px dashed #999999;
@@ -227,9 +230,9 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 }
 
 .moduleFrameEntry {
-	width: 270;
+	width: 270px;
 	background-color: #DDD;
-	background-image: url(img/table_results_bg.gif);
+	background-image: url(/img/table_results_bg.gif);
 	background-position: left top;
 	background-repeat: repeat-x;
 	border-bottom: 1px dashed #999999;
@@ -264,7 +267,7 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 
 .tableVideoStats {
 	width: 100%;
-	background-image: url(img/table_results_selected_bg.gif);
+	background-image: url(/img/table_results_selected_bg.gif);
 	background-repeat: repeat-x;
 	background-color: #FFFFCC;
 	background-position: left top;
@@ -280,6 +283,12 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 	border-bottom: 1px dashed #CCC;
 	margin-bottom: 10px;
 	font-size: 14px;
+	font-weight: bold;
+	color: #CC6633;
+}
+
+.brownSubTitle {
+	font-size: 13px;
 	font-weight: bold;
 	color: #CC6633;
 }
@@ -329,7 +338,7 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 }
 
 .formHighlight {
-	background-image: url(img/table_results_selected_bg.gif);
+	background-image: url(/img/table_results_selected_bg.gif);
 	background-repeat: repeat-x;
 	background-color: #FFFFCC;
 	background-position: left top;
@@ -419,7 +428,7 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 
 .watchTable {
 	background-color: #DDDDDD;
-	background-image: url(img/table_results_bg.gif);
+	background-image: url(/img/table_results_bg.gif);
 	background-repeat: repeat-x;
 	background-position: left top;
 	border-bottom: 1px dashed #999999;
@@ -428,16 +437,6 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 	text-align: center;
 }
 
-#flashcontent {
-	background-color: #FFFFFF;
-	width: 425px;
-	height: 350px;
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border: 1px solid #CCC;
-}
 
 .watchInfoArea {
 	width: 395px;
@@ -501,7 +500,7 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 }
 .vertLeftDashTable {
 	border-left: 1px dashed #CCCCCC;
-	background-image: url(img/long_grad_bg.jpg);
+	background-image: url(/img/long_grad_bg.jpg);
 	background-repeat: repeat-x;
 	background-repeat: repeat-y;
 }
@@ -558,7 +557,7 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 
 #set_of_links {
 	position:relative;
-	padding:none;
+	padding:0px;
 	border:none;
 	background:#ffffff;
 	margin-bottom:20px
@@ -581,7 +580,7 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 #set_of_links a:hover span {
 	display:inline;
 	position:absolute;
-	top:30;
+	padding-top:30px;
 	left:0px;
 	background: #FFFFAA;
 	padding:5px 15px 5px 0
@@ -644,6 +643,12 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 	padding-right: 2px;
 	padding-bottom: 5px;
 	margin-top: 1px;	
+	border-bottom: 1px dashed #CCCCCC;		
+}
+.commentButtons td {
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+	border-bottom: 0px
 }
 
 .commentsSpecifics {
@@ -683,7 +688,7 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 
 /* msolo remix */
 .roundedTable {
-	margin: 0px 0px 1em 0px;
+margin: 0px auto 1em auto;
 }
 
 .sunkenTitle {
@@ -699,8 +704,56 @@ a.title:hover {font-family: Arial, Helvetica, sans-serif; color: #CCFFFF; font-s
 
 .sunkenContent {
 	background-color: #ddd;
-	background-image: url(img/table_results_bg.gif);
+	background-image: url(/img/table_results_bg.gif);
 	background-position: left top;
 	background-repeat: repeat-x;
 	padding: 10px;
+}
+
+
+.videobarthumbnail_block
+{
+	float: left;
+	width: 125px;
+	padding: 5px;
+}
+img.videobarthumbnail_gray
+{
+	border: 3px solid #FFFFFF;
+}
+img.videobarthumbnail_white
+{
+	border: 3px solid #DDD;
+}
+
+.videotitlebarHeading
+{
+	float: left; 
+	font-size: 13px;
+	color: #6D6D6D
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.videotitlebarComment
+{
+	float: left; 
+	font-size: 10px;
+	color: #999999;
+}
+.videotitleBarLinkBlock {
+	width: 173px;
+	float: right;
+}
+.videotitlebarLink
+{
+	horizontal-align: right; 
+	width: 150px;
+}
+img.videotitlebarLinkIcon
+{
+	horizontal-align: right; 
+	vertical-align: bottom;
+	border: 0px;
+	width: 23px;
+	height: 14px;
 }

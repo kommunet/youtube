@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+			$table->boolean('is_moderator')->default(false);
+			$table->boolean('is_administrator')->default(false);
 			$table->text('profile')->default(json_encode([
 				"name" => null,
 				"birthday" => [
@@ -42,7 +44,21 @@ return new class extends Migration
 				"favorite_music" => null,
 				"favorite_books" => null,
 			]));
+			$table->biginteger("num_public_videos")->default(0);
+			$table->biginteger("num_private_videos")->default(0);
+			$table->biginteger("num_friends")->default(0);
+			$table->biginteger("num_favorites")->default(0);
+			$table->biginteger("num_subscribers")->default(0);
+			$table->biginteger("num_playlists")->default(0);
+			$table->biginteger("num_video_views")->default(0);
+			$table->biginteger("num_profile_views")->default(0);
+			$table->biginteger("num_videos_watched")->default(0);
+			$table->string("latest_video")->nullable();
+			$table->timestamp("last_viewed")->nullable(); // for profiles
+			$table->timestamp("last_online")->nullable();
 			$table->timestamp('last_login')->nullable();
+			$table->text("register_ip");
+			$table->text("last_login_ip");
             $table->rememberToken();
             $table->timestamps();
         });

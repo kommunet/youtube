@@ -1,5 +1,5 @@
 <x-layout tab="home">
-	<x-slot name="actions"><x-actions type="home"/></x-slot>
+	<x-slot name="actions"><x-actions.home tab="messages"/></x-slot>
 	<x-inbox :tab="$tab">
 		<table cellpadding="0" cellspacing="8" border="0" bgcolor="#E5ECF9" align="center" width="100%">
 			<tbody>
@@ -42,7 +42,7 @@
 						<img src="img/pixel.gif" width="5" height="1">
 					</td>
 					<td style="padding: 2px;font-weight:bold;text-align:right">Sent: </td>
-					<td>{{ $message->created_at->format("F j, Y, h:i a") }}</td>
+					<td>{{ $message->created_at->ytFormat("F j, Y, h:i a") }}</td>
 				</tr>
 				<tr>
 					<td width="140">

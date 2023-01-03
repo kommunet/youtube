@@ -1,8 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
 <html>
     <head>
-        <title>YouTube - Broadcast Yourself.</title>
-        <link rel="stylesheet" href="/styles.css" type="text/css">
+        <title>YouTube - {{ $title }}</title>
+        <link rel="stylesheet" href="/styles.css?v=2" type="text/css">
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
         <link rel="alternate" type="application/rss+xml" title="YouTube - Recently Added Videos [RSS]" href="/rss/global/recently_added.rss">
@@ -30,7 +30,7 @@
                     <table width="100%" cellpadding="0" cellspacing="0" border="0">
                         <tr valign="top">
                             <td width="130" rowspan="2" style="padding: 0px 5px 5px 5px;">
-                                <a href="/index.php">
+                                <a href="/">
                                     <img src="/img/logo_sm.gif" width="120" height="48" alt="YouTube" border="0" style="vertical-align: middle; ">
                                 </a>
                             </td>
@@ -42,7 +42,7 @@
                                             <table cellpadding="0" cellspacing="0" border="0">
                                                 <tr>
 													@if(Auth::check())
-													<td>Hello, <a href="{{ route('profile', ['user' => Auth::user()->username]) }}">{{ Auth::user()->username }}</a>! <img src="/img/mail.gif" border="0"> (<a href="{{ route('inbox.received') }}">{{ Auth::user()->messages()->count() }}</a>)</td>
+													<td>Hello, <a href="{{ route('profile', ['user' => Auth::user()->username]) }}">{{ Auth::user()->username }}</a>! <img src="/img/mail.gif" border="0"> (<a href="{{ route('inbox.received') }}">{{ Auth::user()->unreadMessages()->count() }}</a>)</td>
 													<td style="padding: 0px 5px 0px 5px;">|</td>
 													<td>
 														<a href="{{ route('logout') }}">Log Out</a>
@@ -95,7 +95,7 @@
                                                     <img src="/img/pixel.gif" width="5" height="1">
                                                 </td>
                                                 <td style="padding: 0px 20px 5px 20px; font-size: 13px; font-weight: bold;">
-                                                    <a href="/index.php">Home</a>
+                                                    <a href="/">Home</a>
                                                 </td>
                                                 <td>
                                                     <img src="/img/pixel.gif" width="5" height="1">
@@ -199,7 +199,7 @@
                                                     <img src="/img/pixel.gif" width="5" height="1">
                                                 </td>
                                                 <td style="padding: 0px 20px 5px 20px; font-size: 13px; font-weight: bold;">
-                                                    <a href="/my_videos_upload.php">Upload</a>
+                                                    <a href="/temp_uploader.php">Upload</a>
                                                 </td>
                                                 <td>
                                                     <img src="/img/pixel.gif" width="5" height="1">
@@ -253,6 +253,33 @@
                 </td>
             </tr>
         </table>
+		@if(session()->has("success"))
+			<table width="100%" align="center" cellpadding="6" cellspacing="3" border="0" bgcolor="green" style="margin-bottom: 10px;">
+				<tbody>
+					<tr>
+						<td align="center" bgcolor="#FFFFFF">
+							<span style="font-weight: bold;color: green;">
+							{!! nl2br(e(session()->get("success"))) !!}
+							</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		@endif
+		
+		@if(session()->has("error"))
+			<table width="100%" align="center" cellpadding="6" cellspacing="3" border="0" bgcolor="red" style="margin-bottom: 10px;">
+				<tbody>
+					<tr>
+						<td align="center" bgcolor="#FFFFFF">
+							<span style="font-weight: bold;color: red;">
+							{!! nl2br(e(session()->get("error"))) !!}
+							</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		@endif
         {{ $slot }}
         </td>
         </tr>
@@ -264,7 +291,7 @@
                         <a href="/whats_new.php">What's New</a>
                         <img src="/img/new.gif"> | <a href="/about.php">About Us</a> | <a href="/help.php">Help</a> | <a href="/developers">Developers</a> | <a href="/terms.php">Terms of Use</a> | <a href="/privacy.php">Privacy Policy</a>
                         <br>
-                        <br> Copyright &copy; 2005 YouTube, LLC&#8482; | <a href="/rss/global/recently_added.rss">
+                        <br> Copyright &copy; 2006 YouTube, LLC&#8482; | <a href="/rss/global/recently_added.rss">
                             <img src="/img/rss.gif" width="36" height="14" border="0" style="vertical-align: text-top;">
                         </a>
                     </span>
