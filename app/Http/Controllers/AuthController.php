@@ -19,7 +19,7 @@ class AuthController extends Controller
 		{
 			$request->validate([
 				"username" => ["required", "string", "alpha_num"],
-				"password" => ["required", "string"],
+				"password" => ["required", "max:20", "string"],
 			]);
 			
 			$creds = $request->only("username", "password");
