@@ -12,6 +12,6 @@
 	</x-modules.featured>
 @elseif($type == "v")
 	@foreach($videos as $video)
-		<x-modules.detailed-entry :video="$video" :trim="$trim" :fulldates="$fulldates"/>
+		<x-modules.detailed-entry :video="$video" :trim="$trim" :fulldates="$fulldates" :edit="$edit"/>
 	@endforeach
 @endif

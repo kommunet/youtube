@@ -65,4 +65,11 @@ class YouTube
 		
 		return self::BuildUrl($url);
 	}
+	
+	public static function format($datetime, $format)
+	{
+		$datetime->subYears(17);
+		
+		return $datetime->format($format);
+	}
 }

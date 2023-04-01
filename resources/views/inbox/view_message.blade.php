@@ -42,7 +42,7 @@
 						<img src="img/pixel.gif" width="5" height="1">
 					</td>
 					<td style="padding: 2px;font-weight:bold;text-align:right">Sent: </td>
-					<td>{{ $message->created_at->ytFormat("F j, Y, h:i a") }}</td>
+					<td>{{ YouTube::format($message->created_at, "F j, Y, h:i a") }}</td>
 				</tr>
 				<tr>
 					<td width="140">

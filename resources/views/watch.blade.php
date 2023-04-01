@@ -236,7 +236,7 @@
 							<tr>
 								<td>
 									<div class="watchDescription">{!! nl2br(e($video->description)) !!}</div>
-									<div style="font-size: 11px; padding-bottom: 18px;"> Added on {{ $video->created_at->ytFormat("F j, Y, g:i a") }}  by <a href="/profile.php?user={{ $uploader->username }}">{{ $uploader->username }}</a>
+									<div style="font-size: 11px; padding-bottom: 18px;"> Added on {{ YouTube::format($video->created_at, "F j, Y, g:i a") }}  by <a href="/profile.php?user={{ $uploader->username }}">{{ $uploader->username }}</a>
 									</div>
 								</td>
 							</tr>
@@ -255,9 +255,12 @@
 										@endforeach
 									</div>
 									<div style="padding-bottom: 10px;">
-										<!--
-										<span style="background-color: #FFFFAA; padding: 2px;">Channels:</span>&nbsp; <a href="channels_portal?c=2">Autos &amp; Vehicles</a>, <a href="channels_portal?c=5">Entertainment</a>, <a href="channels_portal?c=12">Odd &amp; Outrageous</a>
-										-->
+										@if($channels->count())
+											<span style="background-color: #FFFFAA; padding: 2px;">Channels:</span>
+											@foreach($channels as $key => $channel)
+												<a href="channels_portal?c={{ $channel->id }}">{{ $channel->title }}</a>{{ ($key + 1 < $channels->count()) ? ", " : "" }}
+											@endforeach
+										@endif
 									</div>
 									<div style="font-size: 11px; padding-bottom: 10px;">
 										@if($video->misc->date_recorded) Recorded: {{ $video->misc->date_recorded }} @endif

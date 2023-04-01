@@ -14,8 +14,9 @@ use App\Formats\FLV;
 
 use App\Helpers\YouTube;
 
+use App\Models\Channel;
 use App\Models\User;
-use App\Models\Tag;
+use App\Models\RecentTag;
 use App\Models\Video;
 
 class ProcessVideo implements ShouldQueue
@@ -44,6 +45,9 @@ class ProcessVideo implements ShouldQueue
 		// For easy access
 		$data = $this->data;
 		
+		// Weird thing that happens with JSON encoded strings?
+		$data->channels = json_decode($data->channels);
+		
         // Get the runtime of the file
 		$runtime = \FFMpeg::fromDisk('processing_videos')
 						  ->open($data->file)
@@ -52,7 +56,7 @@ class ProcessVideo implements ShouldQueue
 		
 		// Probably an invalid video file...
 		if(!$runtime)
-			return $this->batch()->cancel(); // Cancel the job
+			return; // Cancel the job
 		
 		// Set videos to 30 FPS
 		$framerate = new \FFMpeg\Coordinate\FrameRate(30);
@@ -117,6 +121,8 @@ class ProcessVideo implements ShouldQueue
 			"description" => $data->description,
 			"uploader"    => $data->uploader,
 			"tags"        => $data->tags,
+			"channels"    => $data->channels,
+			"file_name"   => $data->file_name,
 			"runtime"     => $runtime,
 		]);
 		
@@ -129,8 +135,29 @@ class ProcessVideo implements ShouldQueue
 		// Increment the number of public videos
 		$user->increment("num_public_videos", 1);
 		
+		// Add the video to each channel
+		foreach($data->channels as $channel)
+		{
+			// Grab the channel
+			$channel = Channel::findOrFail($channel);
+			
+			// Update the channel's latest video
+			$channel->update(["latest_video_added" => $data->video_id]);
+			
+			// Increment number of videos added to that channel
+			$channel->increment("num_videos_today", 1);
+			$channel->increment("num_videos_total", 1);
+		}
+		
 		// Add the tags into the DB for use in search and homepage
 		foreach(explode(" ", $data->tags) as $tag)
-			Tag::create(["tag" => $tag, "video_id" => $data->video_id]);
+		{
+			RecentTag::create([
+				"tag" => $tag, 
+				"video_id" => $data->video_id,
+				"uploader" => $data->uploader,
+				"channels" => $data->channels
+			]);
+		}
     }
 }

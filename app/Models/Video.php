@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Comment;
+use App\Models\Channel;
 use App\Models\User;
 
 class Video extends Model
@@ -26,12 +27,15 @@ class Video extends Model
 		"last_featured",
 		'last_viewed',
 		"runtime",
+		"file_name",
 		"tags",
+		"channels",
 		"misc",
 	];
 	
 	protected $casts = [
-		'misc' => 'object',
+		'channels' => 'object',
+		'misc'     => 'object',
     ];
 	
 	protected $dates = [
@@ -95,6 +99,11 @@ class Video extends Model
 	public function tags()
 	{
 		return explode(" ", $this->tags);
+	}
+	
+	public function channels()
+	{
+		return Channel::whereIn("id", $this->channels)->get();
 	}
 	
 	public function getLocation()

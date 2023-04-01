@@ -21,7 +21,7 @@
 							<td>
 								<a href="{{ route('inbox.view', ['mid' => $item->message_id]) }}">{{ $item->subject }}</a>
 							</td>
-							<td>{{ $item->created_at->ytFormat("F j, Y") }}</td>
+							<td>{{ YouTube::format($item->created_at, "F j, Y") }}</td>
 						</tr>
 					@endforeach
 				@else

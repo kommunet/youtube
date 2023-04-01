@@ -26,7 +26,9 @@ return new class extends Migration
 			$table->biginteger("num_favorites")->default(0);
 			$table->double("avg_rating")->default(5.0);
 			$table->double("runtime");
+			$table->text("file_name")->nullable();
 			$table->text("tags");
+			$table->text("channels")->default("[]");
 			$table->text("misc")->default(json_encode([
 				"date_recorded"    => null,
 				"address_recorded" => null,

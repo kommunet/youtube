@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Tag;
+use App\Models\RecentTag;
 use App\Models\Video;
 
 class HomepageController extends Controller
@@ -36,11 +36,11 @@ class HomepageController extends Controller
 								->limit(10)
 								->get();
 		
-		$tags = Tag::select("*", \DB::raw("count(*) as occurrences"))
-				   ->groupBy("tag")
-				   ->orderBy("id", "desc")
-				   ->limit(50)
-				   ->get();
+		$tags = RecentTag::select("*", \DB::raw("count(*) as occurrences"))
+				         ->groupBy("tag")
+				         ->orderBy("id", "desc")
+				         ->limit(50)
+				         ->get();
 	
 		return view("home", compact("recently_viewed", "my_video_subscriptions", "featured_videos", "tags"));
 	}

@@ -3,8 +3,21 @@
         <tbody>
             <tr {{ $trim ? 'valign=top' : '' }}>
 				@if($trim)
-					<td>
+					<td {{ ($edit) ? 'valign=top' : '' }}>
 						<a href="{{ route('watch', ['v' => $video->video_id]) }}{{ request()->has('search') ? '&search='.request()->get('search') : '' }}"><img src="{{ route('get_still', ['video_id' => $video->video_id]) }}" class="moduleEntryThumb" height="90" width="120"></a>
+						@if($edit)
+							<center>
+								<br>
+								<form method="get" action="my_videos_edit.php">
+									<input type="hidden" value="{{ $video->video_id }}" name="video_id">
+									<input type="submit" value="Edit Video">
+								</form>
+								<form method="get" action="my_videos_remove.php">
+									<input type="hidden" value="{{ $video->video_id }}" name="video_id">
+									<input type="submit" value="Remove Video">
+								</form>
+							</center>
+						@endif
 					</td>
 				@else
 					<td>
@@ -38,7 +51,7 @@
                     </div>
                     <!--<div class="moduleEntryDetails">Channels // <a href="/web/20051210215356/http://www.youtube.com/channels_portal.php?c=13">People</a>
                     </div>-->
-                    <div class="moduleEntryDetails">Added: {{ ($fulldates) ? $video->created_at->ytFormat("F j, Y") : $video->created_at->diffForHumans() }} by <a href="{{ route('profile', ['user' => $video->uploader]) }}">{{ $video->uploader }}</a></div>
+                    <div class="moduleEntryDetails">Added: {{ ($fulldates) ? YouTube::format($video->created_at, "F j, Y") : $video->created_at->diffForHumans() }} by <a href="{{ route('profile', ['user' => $video->uploader]) }}">{{ $video->uploader }}</a></div>
                     <div class="moduleEntryDetails">Runtime: {{ $video->runtime() }} | Views: {{ $video->num_views }} | Comments: {{ $video->num_comments }}</div>
 					@if($video->num_ratings)
 						<nobr>
@@ -49,6 +62,16 @@
 							<img style="border:0px; padding:0px; margin:0px; vertical-align:middle;" src="{{ $video->star(5, true) }}">
 						</nobr>
 						<span style="color:#666666; font-size:smaller; ">({{ $video->num_ratings }} ratings)</span>
+					@endif
+					
+					@if($edit)
+					<div style="border-bottom:1px dashed #999999;margin-top:10px;margin-bottom:10px;"></div>
+					<div class="moduleFrameDetails"></div>
+					<div class="moduleEntryDetails">File: {{ $video->file_name ? $video->file_name : "Unavailable" }}</div>
+					<div class="moduleEntryDetails">Broadcast: <strong style="color:#CC0033;">Public Video</strong></div>
+					<div class="moduleEntryDetails">Status: Live!</div>
+					<input class="small" style="width: 300px;text-align: center;" readonly="true" value="https://www.youtube.com/watch?v={{ $video->video_id }}">
+					<div class="moduleEntryDetails" style="margin-top:10px;font-size:10px!important;">Share this video with friends! Copy and paste the link above to an email or website.</div>
 					@endif
 				</td>
             </tr>

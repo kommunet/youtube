@@ -37,6 +37,11 @@ class SubscriptionsController extends Controller
 							"subscribed_to" => $channel->username
 						]);
 						
+						// Update the channel
+						$num_subscribers = Subscription::where("subscribed_to", $request->add_user)->count();
+						$channel->num_subscribers = $num_subscribers;
+						$channel->save();
+						
 						// Let the user know that the subscription had been made
 						$request->session()->now("success", "You have subscribed to ".$channel->username."!");
 					}
@@ -58,6 +63,11 @@ class SubscriptionsController extends Controller
 					Subscription::where("user_id", $request->user()->username)
 								->where("subscribed_to", $channel->username)
 								->delete();
+					
+					// Update the channel
+					$num_subscribers = Subscription::where("subscribed_to", $request->add_user)->count();
+					$channel->num_subscribers = $num_subscribers;
+					$channel->save();
 					
 					// Let the user know that we have unsubscribed
 					$request->session()->now("error", "You have unsubscribed from ".$channel->username."!");

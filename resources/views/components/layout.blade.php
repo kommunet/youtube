@@ -155,6 +155,32 @@
                                             </tr>
                                         </table>
                                     </td>
+									<td>
+                                        <table style="@if($tab == 'groups') background-color: #DDDDDD; border-bottom: 1px solid #DDDDDD; @else background-color: #BECEEE; @endif margin: 5px 2px 1px 0px;" cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td>
+                                                    <img src="/img/box_login_tl.gif" width="5" height="5">
+                                                </td>
+                                                <td>
+                                                    <img src="/img/pixel.gif" width="1" height="5">
+                                                </td>
+                                                <td>
+                                                    <img src="/img/box_login_tr.gif" width="5" height="5">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img src="/img/pixel.gif" width="5" height="1">
+                                                </td>
+                                                <td style="padding: 0px 20px 5px 20px; font-size: 13px; font-weight: bold;">
+                                                    <a href="/">Groups</a>
+                                                </td>
+                                                <td>
+                                                    <img src="/img/pixel.gif" width="5" height="1">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
                                     <td>
                                         <table style="@if($tab == 'friends') background-color: #DDDDDD; border-bottom: 1px solid #DDDDDD; @else background-color: #BECEEE; @endif margin: 5px 2px 1px 0px;" cellpadding="0" cellspacing="0" border="0">
                                             <tr>
@@ -199,7 +225,7 @@
                                                     <img src="/img/pixel.gif" width="5" height="1">
                                                 </td>
                                                 <td style="padding: 0px 20px 5px 20px; font-size: 13px; font-weight: bold;">
-                                                    <a href="/temp_uploader.php">Upload</a>
+                                                    <a href="/my_videos_upload.php">Upload</a>
                                                 </td>
                                                 <td>
                                                     <img src="/img/pixel.gif" width="5" height="1">

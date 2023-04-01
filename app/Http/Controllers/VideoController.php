@@ -94,6 +94,9 @@ class VideoController extends Controller
 		// Let's get the video's clicks
 		$sites_linking = $video->sitesLinking();
 		
+		// And finally, let's get the video's attached channels
+		$channels = $video->channels();
+		
 		// Return the watch page
 		return view("watch", compact(
 			"video", 
@@ -104,7 +107,17 @@ class VideoController extends Controller
 			"is_subscribed", 
 			"comments", 
 			"tags", 
+			"channels", 
 			"sites_linking"
 		));
+	}
+	
+	public function embed(Request $request, string $video_id)
+	{
+		$video = Video::where("video_id", $video_id)->firstOrFail();
+		
+		$runtime = ceil($video->runtime);
+		
+		return redirect("/p.swf?video_id=$video_id&l=$runtime");
 	}
 }

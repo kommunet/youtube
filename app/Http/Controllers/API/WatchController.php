@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Helpers\YouTube;
 use App\Models\Video;
 use App\Models\Comment;
+use App\Models\Message;
 use App\Models\Rating;
 
 class WatchController extends Controller
@@ -72,6 +73,13 @@ class WatchController extends Controller
 					"comment"  => ["required", "string", "max:500"],
 				]);
 				
+				// Get the video
+				$video = Video::where("video_id", $request->video_id)->firstOrFail();
+				
+				// Get uploader and commenter
+				$commenter = $request->user();
+				$uploader  = $video->uploader();
+				
 				// Generate a new comment ID
 				$id_loop = true;
 				while($id_loop == true)
@@ -109,15 +117,34 @@ class WatchController extends Controller
 				Comment::create([
 					"comment_id"      => $c_id,
 					"body"            => $request->comment,
-					"commenter"       => $request->user()->username,
+					"commenter"       => $commenter->username,
 					"video_id"        => $request->video_id,
 					"reference_video" => $request->field_reference_video,
 					"reply_parent_id" => $request->reply_parent_id,
 				]);
 				
 				// Update the video's comment count
-				Video::where("video_id", $request->video_id)
-					 ->increment("num_comments", 1);
+				$video->increment("num_comments", 1);
+				
+				// Get the original comment from the reply_parent_id
+				$og_comment = Comment::where("comment_id", $request->reply_parent_id)->first();
+				
+				// This will dictate whether we are sending it to the commenter or the replier
+				$send_to = ($og_comment)
+						    ? $og_comment->commenter()
+						    : $uploader;
+				
+				// Send a message to the commenter or uploader
+				if($send_to->id !== $commenter->id)
+				{
+					Message::create([
+						"message_id" => YouTube::generateId(),
+						"sent_by"    => $commenter->id,
+						"sent_to"    => $send_to->id,
+						"subject"    => $commenter->username . " has left a ".(($request->reply_parent_id) ? "reply to your comment on \"".$video->title."\"" : "comment on your video \"".$video->title."\""),
+						"message"    => $commenter->username . " commented: \n\"" . $request->comment . "\"" . (($og_comment) ? "\n\nOriginal comment: \n\"".$og_comment->body."\"" : "")
+					]);
+				}
 				
 				// Return the user back with a success message
 				return "OK " . $request->form_id;

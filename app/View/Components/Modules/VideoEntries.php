@@ -14,12 +14,14 @@ class VideoEntries extends Component
 	
 	public $fulldates;
 	
+	public $edit;
+	
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($videos, $type, $trim = false, $fulldates = false)
+    public function __construct($videos, $type, $trim = false, $fulldates = false, $edit = false)
     {
         $this->videos = $videos;
 		
@@ -28,6 +30,8 @@ class VideoEntries extends Component
 		$this->trim = $trim;
 		
 		$this->fulldates = $fulldates;
+		
+		$this->edit = $edit;
     }
 
     /**

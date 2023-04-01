@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('recent_tags', function (Blueprint $table) {
             $table->id();
 			$table->string("tag");
 			$table->string("video_id");
+			$table->string("uploader")->nullable();
+			$table->string("channels")->default("[]");
             $table->timestamps();
         });
     }

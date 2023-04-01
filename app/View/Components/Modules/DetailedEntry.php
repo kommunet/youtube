@@ -12,18 +12,22 @@ class DetailedEntry extends Component
 	
 	public $fulldates;
 	
+	public $edit;
+	
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($video, $trim = false, $fulldates = false)
+    public function __construct($video, $trim = false, $fulldates = false, $edit = false)
     {
 		$this->video = $video;
 		
 		$this->trim = ($trim == "true") ? true : false;
 		
 		$this->fulldates = ($fulldates == "true") ? true : false;
+		
+		$this->edit = ($edit == "true") ? true : false;
     }
 
     /**

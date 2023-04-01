@@ -11,7 +11,8 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "monarobase/country-list": "^3.3",
-        "pbmedia/laravel-ffmpeg": "^8.2"
+        "pbmedia/laravel-ffmpeg": "^8.2",
+        "spatie/laravel-route-attributes": "^1.18"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

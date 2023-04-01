@@ -40,7 +40,7 @@ class CdnController extends Controller
 		
 		// Specify our variables for easy access
 		$video_id = $request->video_id;
-		$still_id = $request->still_id ?? 1;
+		$still_id = ($request->still_id > 0) ? $request->still_id : 1;
 		
 		// Specify our path
 		$path = $video_id."_".$still_id.'.jpg';

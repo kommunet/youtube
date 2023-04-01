@@ -41,7 +41,7 @@
 									<td style="padding-bottom: 8px;">
 										<select name="b_month">
 											@foreach(range(1, 12) as $month)
-												<option value="{{ $month }}" {{ (!($profile->birthday && $profile->birthday->month == $month)) ?: "selected" }}>{{ \Carbon\Carbon::createFromFormat("m", $month)->ytFormat("F") }}</option>
+												<option value="{{ $month }}" {{ (!($profile->birthday && $profile->birthday->month == $month)) ?: "selected" }}>{{ \Carbon\Carbon::createFromFormat("m", $month)->format("F") }}</option>
 											@endforeach
 										</select>
 										<select name="b_day">
@@ -50,7 +50,7 @@
 											@endforeach
 										</select>
 										<select name="b_year">
-											@foreach(range(\Carbon\Carbon::now()->ytFormat("Y"), 1910) as $year)
+											@foreach(range(\Carbon\Carbon::now()->format("Y"), 1910) as $year)
 												<option value="{{ $year }}" {{ (!($profile->birthday && $profile->birthday->year == $year)) ?: "selected" }}>{{ $year }}</option>
 											@endforeach
 										</select>

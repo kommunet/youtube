@@ -58,7 +58,7 @@ class AuthController extends Controller
 			
 			$user = User::create([
 				"username"      => $request->username,
-				"password"      => Hash::make($request->password),
+				"password"      => password_hash($request->password, PASSWORD_DEFAULT),
 				"email"         => $request->email,
 				"last_login"    => Carbon::now()->format("Y-m-d H:i:s"),
 				"register_ip"   => $request->ip(),

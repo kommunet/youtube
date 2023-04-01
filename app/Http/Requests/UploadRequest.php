@@ -26,8 +26,10 @@ class UploadRequest extends FormRequest
         return [
 			'title'       => 'required|string|max:100',
 			'tags'        => 'required|string|max:75',
-            'video'       => 'required|mimetypes:video/avi,video/mpeg,video/quicktime,video/x-ms-asf,video/mp4,video/x-flv',
-			'description' => 'string|max:2500',
+            'file'        => 'required|mimetypes:video/avi,video/mpeg,video/quicktime,video/x-ms-asf,video/mp4,video/x-flv',
+			'description' => 'string|max:500',
+			'channels'    => 'required|array|max:3',
+			'channels.*'  => 'required|integer|min:1|max:21'
         ];
     }
 }

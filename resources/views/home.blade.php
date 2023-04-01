@@ -68,44 +68,103 @@
 										<tbody>
 											@if(Auth::check())
 												<tr valign="top">
-													<td width="33%" style="border-right: 1px dashed #369; padding: 0px 10px 10px 10px; color: #444;">
+													<td width="33%" style="border-right: 1px dashed #CCCCCC; padding: 0px 10px 10px 10px; color: #444;">
 														<b>
-															<div style="font-size: 16px; color: #0c3768; margin-top:4px">My Account Overview</div>
+															<div style="font-size: 16px; color: #0c3768; margin-top:4px">Welcome, {{ Auth::user()->username }}</div>
 															<b></b>
 														</b>
-														<span style="display:block;margin-top:8px"><b>User Name:</b> <a href="profile.php?user=genosmrpg7899">{{ Auth::user()->username }}</a></span>
-														<span style="display:block;margin-top:4px"><b>Email:</b> {{ Auth::user()->email }}</span>
-														<span style="display:block;margin-top:4px"><b>Videos watched:</b> {{ (Auth::user()->num_videos_watched) ? Auth::user()->num_videos_watched : 'None' }}</span>
-														<table width="100%" cellpadding="0" cellspacing="1" border="0" style="margin-top: 18px;">
+														<table class="roundedTable" cellspacing="0" cellpadding="0" border="0" style="margin-top: 10px;">
 															<tbody>
-																<tr>
-																	<td align="center" valign="top">
-																		<a href="#" style="font-size:16px;display:block">Videos: {{ Auth::user()->num_public_videos }}</a>
-																		<span style="font-size: 11px;display:block">Views: {{ Auth::user()->num_video_views }}</span>
-																		<span style="font-size: 11px;display:block">* Fans: 0</span>
-																		</td>
-																	<td align="center" valign="top">
-																		<a href="#" style="font-size:16px;display:block">Favorites: {{ Auth::user()->num_favorites }}</a>
-																	</td>
-																	<td align="center" valign="top">
-																		<a href="#" style="font-size:16px;display:block">Friends: {{ Auth::user()->num_friends }}</a>
-																		<span style="font-size: 11px;display:block"><a href="#">Their Vids</a> (0)</span>
-																		<span style="font-size: 11px;display:block"><a href="#">Their Favs</a> (0)</span>
+																<tr valign="top">
+																	<td width="271">
+																		<div>
+																			<table height="28" width="271" background="/img/SmallGenericTab.jpg" cellspacing="0" cellpadding="0" border="0">
+																				<tbody>
+																					<tr>
+																						<td>
+																							<span style="padding-left: 5px; font-size: 13px; color: #6D6D6D; font-weight: bold; padding-right: 5px;">My Stats</span>
+																						</td>
+																					</tr>
+																				</tbody>
+																			</table>
+																		</div>
+																		<div>
+																			<table height="121" width="21" cellspacing="0" cellpadding="0">
+																				<tbody>
+																					<tr>
+																						<td>
+																							<table style="background-color: #FFFFFF; border: 1px solid #CCCCCC; border-top: none; padding: 10px;" width="271" height="121" cellspacing="0" cellpadding="0">
+																								<tbody>
+																									<tr valign="top">
+																										<td>
+																											<div style="padding-bottom: 5px;">
+																												<a href="">My Videos</a> have been viewed {{ Auth::user()->num_video_views }} times
+																											</div>
+																											<div style="padding-bottom: 5px;">I have {{ Auth::user()->num_friends }} <a href="">Friends</a>
+																											</div>
+																											<div style="padding-bottom: 5px;">I've watched {{ Auth::user()->num_videos_watched }} videos</div>
+																											<div>My Profile has been viewed {{ Auth::user()->num_profile_views }} times</div>
+																										</td>
+																									</tr>
+																								</tbody>
+																							</table>
+																						</td>
+																					</tr>
+																				</tbody>
+																			</table>
+																		</div>
 																	</td>
 																</tr>
 															</tbody>
 														</table>
-														<span style="display:block;margin-top:8px;font-size:11px">* Number of users that added your videos as a favorite.</span>
 													</td>
-													<td style="border-right: 0px dashed #369; padding: 0px 10px 10px 10px; color: #444;" width="33%"><span style="display:block;margin-top:8px"><img src="/img/mail.gif" border="0"> You have <a href="my_messages.php">{{ Auth::user()->unreadMessages()->count() }} new messages.</a></span><span style="display:block;margin-top:8px"><b>ToDo List...</b></span><span style="display:block;margin-top:4px"><img src="/img/icon_todo.gif" style="vertical-align: text-bottom;padding-left: 2px;">
-														<a href="my_friends_invite.php">Invite Your Friends</a></span>
-														@if(!Auth::user()->hasModifiedProfile())
-															<span style="display:block;margin-top:4px">
-																<img src="/img/icon_todo.gif" style="vertical-align: text-bottom;padding-left: 2px;">
-																<a href="my_profile.php">Update Your Profile</a>
-															</span>
-														@endif
-														<br>
+													<td style="border-right: 0px dashed #369; padding: 0px 10px 10px 10px; color: #444;" width="33%">
+														<table class="roundedTable" cellspacing="0" cellpadding="0" border="0" style="margin-top: 32px;">
+															<tbody>
+																<tr valign="top">
+																	<td width="271">
+																		<div>
+																			<table height="28" width="271" background="/img/SmallGenericTab.jpg" cellspacing="0" cellpadding="0" border="0">
+																				<tbody>
+																					<tr>
+																						<td>
+																							<span style="padding-left: 5px; font-size: 13px; color: #6D6D6D; font-weight: bold; padding-right: 5px;">My Inbox</span>
+																						</td>
+																					</tr>
+																				</tbody>
+																			</table>
+																		</div>
+																		<div>
+																			<table height="121" width="21" cellspacing="0" cellpadding="0">
+																				<tbody>
+																					<tr>
+																						<td>
+																							<table style="background-color: #FFFFFF; border: 1px solid #CCCCCC; border-top: none; padding: 10px;" width="271" height="121" cellspacing="0" cellpadding="0">
+																								<tbody>
+																									<tr valign="top">
+																										<td>
+																											<div style="padding-bottom: 5px;">
+																												<img style="margin-right: 5px;" src="/img/home_mail_icon.gif">You have <a href="">{{ Auth::user()->unreadMessages()->count() }} new message</a>
+																											</div>
+																											<div style="padding-bottom: 35px;">You have <a href="">0 friend request</a>
+																											</div>
+																											<div>
+																												<a style="font-weight: bold;" href="">Sign up for "The Weekly Tube" e-mail</a>
+																												<br> The best YouTube videos delivered to you!
+																											</div>
+																										</td>
+																									</tr>
+																								</tbody>
+																							</table>
+																						</td>
+																					</tr>
+																				</tbody>
+																			</table>
+																		</div>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
 													</td>
 												</tr>
 											@else
@@ -401,6 +460,7 @@
 					<!-- end recently featured -->
 				</td>
 				<td width="180">
+					@if(!Auth::check())
 					<table class="roundedTable" width="180" align="center" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffeebb">
 						<tbody>
 							<tr>
@@ -438,6 +498,7 @@
 							</tr>
 						</tbody>
 					</table>
+					@endif
 					<table class="roundedTable" width="180" align="center" cellpadding="0" cellspacing="0" border="0" bgcolor="#cccccc">
 						<tbody>
 							<tr>
@@ -473,7 +534,7 @@
 							</tr>
 						</tbody>
 					</table>
-					<table class="roundedTable" width="180" align="center" cellpadding="0" cellspacing="0" border="0" bgcolor="#eeeeee">
+					<table class="roundedTable" width="180" align="center" cellpadding="0" cellspacing="0" border="0" bgcolor="#000000">
 						<tbody>
 							<tr>
 								<td><img src="/img/box_login_tl.gif" width="5" height="5"></td>
@@ -483,22 +544,23 @@
 							<tr>
 								<td><img src="/img/pixel.gif" width="5" height="1"></td>
 								<td width="170">
-									<!--Begin Monthly Contest Information-->
+									<!--Begin SimplyFired Contest Information-->
 									<div style="font-size: 16px; font-weight: bold; text-align: center; padding: 5px 5px 10px 5px;">
-										<div style="font-size: 12px; font-weight: bold; text-align: center;"><a href="/t/holiday_contest">Holiday Video Contest</a></div>
-										<div style="color: #000000; font-size: 11px; font-weight: normal; text-align: center; padding-top: 3px;">Win an Xbox 360!</div>
-										<!--<a href="watch?v=fRf7JbpMOBs&amp;search=holidaycontest"><img src="http://static.youtube.com/get_still.php?video_id=fRf7JbpMOBs" width="80" height="60" style="border: 5px solid #FFFFFF; margin-top: 10px;"></a>  -->
-										<div style="text-align: center; padding-top: 3px; padding-bottom: 5px;"><img src="/img/x360_logo.gif" width="92" height="60"></div>
-										<div style="font-size: 11px; font-weight: normal; text-align: center; padding-bottom: 3px; text-decoraton: underline; padding-top: 3px; background: #eeeeedd;"><a href="/t/holiday_contest">Enter Now</a> | <a href="/results.php?search=holidaycontest">View Entries</a></div>
+									<div style="color: #FFFFFF; font-size: 12px; font-weight: bold; text-align: center;">January Video Contest</div>
+									<div style="color: #FFFFFF; font-size: 11px; font-weight: normal; text-align: center; padding-bottom: 5px;">Animator vs. YouTube</div>  
+									<div style="color:#FFFFFF; font-size: 11px; font-weight: normal; text-align: center;">Sponsored by:</div> 
+									<a href="//the.ki" target="_blank"><img src="/img/theki_logo_small.gif"></a>
+									<div style="font-size: 11px; font-weight: normal; text-align: center; padding-bottom: 5px; text-decoraton: underline; background: #FFFFFF"><a href="/monthly_contest.php">Enter Now</a></div> 
 									</div>
-									<!--End Monthly Contest Information-->
+									<!--End SimplyFired Contest Information-->
+
 								</td>
 								<td><img src="/img/pixel.gif" width="5" height="1"></td>
 							</tr>
 							<tr>
-								<td valign="bottom"><img src="/img/box_login_bl.gif" width="5" height="5"></td>
+								<td><img src="/img/box_login_bl.gif" width="5" height="5"></td>
 								<td><img src="/img/pixel.gif" width="1" height="5"></td>
-								<td valign="bottom"><img src="/img/box_login_br.gif" width="5" height="5"></td>
+								<td><img src="/img/box_login_br.gif" width="5" height="5"></td>
 							</tr>
 						</tbody>
 					</table>

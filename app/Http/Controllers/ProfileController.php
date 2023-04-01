@@ -22,7 +22,7 @@ class ProfileController extends Controller
 		
 		$is_subscribed = (Auth::check()) ? $request->user()->subscribedTo($request->user) : false;
 		
-		return view("profile", compact("user", "video", "is_subscribed"));
+		return view("profile.main", compact("user", "video", "is_subscribed"));
 	}
 	
 	public function videos(Request $request)
@@ -39,6 +39,6 @@ class ProfileController extends Controller
 			$tags = array_merge($tags, $video->tags());
 		$tags = array_unique($tags);
 		
-		return view("profile_videos", compact("user", "videos", "tags"));
+		return view("profile.videos", compact("user", "videos", "tags"));
 	}
 }
